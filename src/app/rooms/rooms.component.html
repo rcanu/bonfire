@@ -1,0 +1,10 @@
+
+<h3>Rooms</h3>
+
+<mat-card *ngFor="let room of rooms | async">
+  <strong>{{ room.name }}</strong>
+  <mat-card-actions>
+    <button mat-button (click)="enterRoom(room.id)">Enter</button>
+  </mat-card-actions>
+</mat-card>
+

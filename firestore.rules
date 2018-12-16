@@ -1,0 +1,30 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /rooms/{document=**} {
+      // READ ------------------------------
+      allow get:    if authIsNotNull();
+      allow list:   if authIsNotNull();
+      // WRITE -----------------------------
+      allow create: if false;
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    match /users/{userId} {
+      // READ ------------------------------
+      allow get:    if request.auth.uid == userId;
+      allow list:   if request.auth.uid == userId;
+      // WRITE -----------------------------
+      allow create: if authIsNotNull();
+      allow update: if request.auth.uid == userId;
+      allow delete: if false;
+    }
+
+    // Check if the request has a valid authentication    
+    function authIsNotNull() {
+      return request.auth.uid != null
+    }
+
+  }
+}

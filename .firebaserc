@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "bonfire-dev-3064e",
+    "prod": "bonfire-prod"
+  }
+}

@@ -1,0 +1,10 @@
+<h3>{{room.name}}</h3>
+<mat-card *ngFor="let user of users | async">
+  <mat-card-header>
+    <img mat-card-avatar src="{{ user.photoURL }}" />
+    <mat-card-title>{{user.displayName}}</mat-card-title>
+  </mat-card-header>
+</mat-card>
+<button mat-raised-button (click)="leaveRoom()" color="warn"
+  [disabled]="userRoom !== room.id">Leave room</button>
+<button mat-raised-button routerLink="/rooms">Back to Rooms</button>
